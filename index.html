@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>nunux-cloudinit by ncarlier</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>nunux-cloudinit</h1>
+        <p>Nunux cloud configuration website.</p>
+
+        <p class="view"><a href="https://github.com/ncarlier/nunux-cloudinit">View the Project on GitHub <small>ncarlier/nunux-cloudinit</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ncarlier/nunux-cloudinit/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ncarlier/nunux-cloudinit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ncarlier/nunux-cloudinit">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a name="nunux-cloud-configuration-website" class="anchor" href="#nunux-cloud-configuration-website"><span class="octicon octicon-link"></span></a>Nunux cloud configuration website.</h3>
+
+<p>Go to  <a href="https://rom-o-matic.eu/">ROM-o-matic</a> website in order to generate iPXE image.</p>
+
+<p>Choose "ISO bootable image" as output format and paste the following script:</p>
+
+<pre><code>#!ipxe
+
+set base-url http://stable.release.core-os.net/amd64-usr/current
+set config-url http://ncarlier.github.io/nunux-cloudinit/conf/nunux.yml
+kernel ${base-url}/coreos_production_pxe.vmlinuz console=tty0 rootfstype=btrfs cloud-config-url=${config-url}
+initrd ${base-url}/coreos_production_pxe_image.cpio.gz
+boot
+</code></pre>
+
+<p>Build and upload the image to your cloud provider. Finally boot the machine.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ncarlier">ncarlier</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
