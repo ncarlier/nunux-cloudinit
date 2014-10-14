@@ -6,6 +6,7 @@ manage_etc_hosts: localhost
 
 users:
   - name: core
+    passwd: $6$rounds=4096$94J6v4FBt$yTBzC6iqV9SyH2LjiXpI/YV/xwd5Gt5O1XFDRe9rjHYtAVRgmzVY3zPAoclYc3zhHukeb8xuFVMLqZvo4Ea530
     coreos-ssh-import-github: ncarlier
 
 write_files:
