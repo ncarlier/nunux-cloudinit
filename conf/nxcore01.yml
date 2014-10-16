@@ -6,35 +6,13 @@ manage_etc_hosts: localhost
 
 users:
   - name: core
-    passwd: $6$rounds=4096$94J6v4FBt$yTBzC6iqV9SyH2LjiXpI/YV/xwd5Gt5O1XFDRe9rjHYtAVRgmzVY3zPAoclYc3zhHukeb8xuFVMLqZvo4Ea530
     coreos-ssh-import-github: ncarlier
-
-write_files:
-  - path: /etc/systemd/network/static.network
-    permissions: 0644
-    content: |
-        [Match]
-        Name=en*
-        [Network]
-        Address=10.0.0.10/24
-        Gateway=10.0.0.1
-        DNS=8.8.8.8
-        DNS=8.8.4.4
-  - path: /etc/environment
-    permissions: 0664
-    content: |
-        COREOS_PUBLIC_IPV4=10.0.0.10
-        COREOS_PRIVATE_IPV4=10.0.0.10
 
 coreos:
   etcd:
     #generate a new token for each unique cluster from https://discovery.etcd.io/new
     #discovery: https://discovery.etcd.io/3b4f8671243ff94e47a3c6460d11aa38
-    addr: 10.0.0.10:4001
-    peer-addr: 10.0.0.10:7001
   units:
-    - name: systemd-networkd.service
-      command: restart
     - name: etcd.service
       command: start
     - name: fleet.service
@@ -44,7 +22,6 @@ coreos:
         [Unit]
         Description=fleet
         [Service]
-        Environment=FLEET_PUBLIC_IP=10.0.0.10
         ExecStart=/usr/bin/fleet
     - name: docker-tcp.socket
       command: start
