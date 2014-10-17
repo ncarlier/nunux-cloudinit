@@ -35,13 +35,16 @@ coreos:
         BindIPv6Only=both
         [Install]
         WantedBy=sockets.target
-    - name: default.swap
+    - name: swapon.service
       command: start
       content: |
         [Unit]
-        Description=Activate SWAP
-        [Swap]
-        What=/dev/sda2
+        Description=Turn on swap
+        [Service]
+        Type=oneshot
+        ExecStart=/sbin/swapon /dev/sda2
+        [Install]
+        WantedBy=local.target
     - name: media-data.mount
       command: start
       content: |
