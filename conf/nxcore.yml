@@ -35,6 +35,13 @@ coreos:
         BindIPv6Only=both
         [Install]
         WantedBy=sockets.target
+    - name: default.swap
+      command: start
+      content: |
+        [Unit]
+        Description=Activate SWAP
+        [Swap]
+        What=/dev/sda2
     - name: media-data.mount
       command: start
       content: |
