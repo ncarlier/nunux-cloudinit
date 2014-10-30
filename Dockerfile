@@ -21,6 +21,8 @@ VOLUME ["/var/opt/ipxe"]
 
 WORKDIR /opt/ipxe/src
 
+RUN ln -s /usr/lib/syslinux/modules/bios/ldlinux.c32 /usr/lib/ISOLINUX/
+
 # Build iPXE iso and delete the result to be able to rebuild the iso when running the container
 RUN /var/opt/ipxe/gen.sh
 
