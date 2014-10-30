@@ -1,17 +1,23 @@
-### Nunux cloud configuration website.
+## Nunux cloud configuration website.
 
-Go to  [ROM-o-matic](https://rom-o-matic.eu/) website in order to generate iPXE image.
+The purpose of this project is to build an iPXE ISO file with an embedded configuration
+that provide the ability to boot on CoreOS with an online cloud-init configuration.
 
-Choose "ISO bootable image" as output format and paste the following script:
+### Create iPXE ISO
 
-```
-#!ipxe
+#### With ROM-o-matic
 
-set base-url http://stable.release.core-os.net/amd64-usr/current
-set config-url http://ncarlier.github.io/nunux-cloudinit/conf/nunux.yml
-kernel ${base-url}/coreos_production_pxe.vmlinuz console=tty0 rootfstype=btrfs cloud-config-url=${config-url}
-initrd ${base-url}/coreos_production_pxe_image.cpio.gz
-boot
-```
+Go to [ROM-o-matic](https://rom-o-matic.eu/) website in order to generate iPXE image.
+
+Choose "ISO bootable image" as output format and paste the content of the ipxe.conf file.
 
 Build and upload the image to your cloud provider. Finally boot the machine.
+
+#### With Docker
+
+Run the following commands:
+
+    $ make
+    $ make run
+
+Get the generated ipxe.iso file and upload it to your cloud provider. Finally boot the machine.
